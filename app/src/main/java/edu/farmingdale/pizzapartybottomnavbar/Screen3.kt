@@ -25,6 +25,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlin.math.ceil
 
 // ToDo 2: the slider should be able to change the text value of the screen
 
@@ -35,15 +36,17 @@ fun Screen3() {
     var sliderValue by remember { mutableStateOf(0.5f) }
     var chkd by remember { mutableStateOf(true) }
 
+    val brushColor = arrayOf(0.0f to Color.White, 0.5f to Color.LightGray, 1f to Color.White)
+
 
     val context = LocalContext.current
-    Column ( modifier = Modifier.padding(horizontal = 20.dp).fillMaxSize(),
+    Column ( modifier = Modifier.background(Brush.verticalGradient(colorStops = brushColor)).padding(horizontal = 20.dp).fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally){
         Slider(value = sliderValue, onValueChange = { sliderValue=it }, Modifier.fillMaxWidth()
             , enabled = chkd)
 
-        Text (fontSize = 20.sp, text = "Second Screen" )
+        Text (fontSize = 20.sp, text = "Slider value: ${ceil(sliderValue*100)}")
 
         Button(onClick = { val newInt = Intent(Intent.ACTION_VIEW)
             newInt.setData(Uri.parse("tel:6314202000"))
