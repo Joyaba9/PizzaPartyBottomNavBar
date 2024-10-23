@@ -30,33 +30,41 @@ fun GpaAppScreen() {
 
     // Declare variables for GPA result and background color
     var gpa by remember { mutableStateOf("") }
-    var backColor by remember { mutableStateOf(Color.White) }
-    var btnLabel by remember { mutableStateOf("Calulate GPA") }
+    var backColor by remember { mutableStateOf(Color.Cyan) }
+    var btnLabel by remember { mutableStateOf("Compute GPA") }
+
 
     Column(
-        modifier = Modifier
+        modifier = Modifier.fillMaxSize().background(backColor)
         ,verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        TextField(
+        OutlinedTextField(
             value = grade1,
-            onValueChange = { grade1 = it },Modifier.padding(16.dp),
-            label = { Text("Course 1 Grade")}
+            onValueChange = { grade1 = it },
+            Modifier.padding(16.dp),
+            label = { Text("Course 1 Grade")},
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
         )
 
 
-        TextField(
+        // make text field transparent
+        OutlinedTextField(
             value = grade2,
             onValueChange = { grade2 = it },
+            Modifier.padding(16.dp),
             label = { Text("Course 2 Grade") },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
 
 
 
-        TextField(
+        OutlinedTextField(
             value = grade3,
             onValueChange = { grade3 = it },
+            Modifier.padding(16.dp),
             label = { Text("Course 3 Grade") },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
 
 
@@ -69,7 +77,7 @@ fun GpaAppScreen() {
 
                     // Change background color based on GPA
                     backColor = when {
-                        gpaVal < 60 -> Color.Red
+                        gpaVal < 60.0 -> Color.Red
                         gpaVal in 60.0..79.0 -> Color.Yellow
                         else -> Color.Green
                     }
@@ -83,10 +91,14 @@ fun GpaAppScreen() {
                 grade2 = ""
                 grade3 = ""
                 gpa = ""
-                backColor = Color.White
+                backColor = Color.Cyan
                 btnLabel = "Compute GPA"
             }
-        }, modifier = Modifier.padding(top = 56.dp)) {
+        },  modifier = Modifier.padding(top = 56.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color.Blue,
+            )
+        ) {
             Text(btnLabel)
         }
 
