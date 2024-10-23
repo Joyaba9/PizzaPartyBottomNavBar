@@ -54,7 +54,7 @@ fun PizzaPartyScreen( modifier: Modifier = Modifier) {
         )
         RadioGroup(
             labelText = "How hungry?",
-            radioOptions = listOf("Light", "Medium", "Very hungry"),
+            radioOptions = listOf("Light", "Medium", "Hungryyy","Very hungry"),
             selectedOption = hungerLevel,
             onSelected = { hungerLevel = it },
             modifier = modifier
@@ -142,6 +142,7 @@ fun calculateNumPizzas(
     val slicesPerPerson = when (hungerLevel) {
         "Light" -> 2
         "Medium" -> 3
+        "Hungryyy" -> 4
         else -> 5
     }
 
